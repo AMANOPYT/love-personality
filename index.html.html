@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Personality Analyzer ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle, #000000, #1a1a1a);
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .circle-animation {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .circle-animation::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: repeating-conic-gradient(
+        from 0deg,
+        red 0deg 30deg,
+        green 30deg 60deg,
+        blue 60deg 90deg
+      );
+      animation: spin 10s linear infinite;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #ffe6f0;
+      text-shadow: 0 0 12px #ff69b4;
+      animation: glow 2s infinite alternate;
+      z-index: 1;
+    }
+
+    input, button, #result, .top-left, .bottom-right {
+      z-index: 1;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      margin-top: 20px;
+      width: 80%;
+      max-width: 320px;
+      border: none;
+      border-radius: 12px;
+      text-align: center;
+      color: #444;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 28px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff69b4;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #ff1493;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 16px;
+      max-width: 95%;
+      display: none;
+      backdrop-filter: blur(6px);
+      line-height: 1.6;
+    }
+
+    .top-left {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 0 6px #fff;
+      animation: glow 2s infinite alternate;
+    }
+
+    .bottom-right {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 8px #ff69b4; }
+      to { text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-animation"></div>
+
+  <div class="top-left">✨ Made by Aman Mishra 😉</div>
+
+  <h1>😎😏 Discover Your Love Personality 😎😏</h1>
+
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button onclick="showPersonality()">Show My Personality</button>
+
+  <div id="result"></div>
+
+  <div class="bottom-right">💬 Only for entertainment</div>
+
+  <script>
+    const traits = [
+      "You're a glowing star in everyone's sky. Your charm and kindness leave a lasting impact. Loyal, loving, and unforgettable. 🌟",
+      "You're a burst of laughter, joy, and light in the lives of people around you. You're thoughtful, cheerful, and bring smiles. 😄",
+      "You are dreamy, artistic, and romantic at heart. Your presence is poetic and your feelings deep. 💭",
+      "You have a heart that dreams beyond stars and a mind that speaks through actions. Your passion inspires others. 💜",
+      "You're a beautiful mystery. Calm on the outside, but filled with love and loyalty within. Truly unique and admired. 🌌",
+      "You have a creative soul with a golden heart. Your thoughts are inspiring, and your love knows no bounds. 🎨"
+    ];
+
+    function showPersonality() {
+      const input = document.getElementById("nameInput").value.trim();
+      const name = input.toLowerCase().replace(/\s+/g, " ");
+      const result = document.getElementById("result");
+
+      if (!input) {
+        alert("Please enter a name!");
+        return;
+      }
+
+      // 💖 Special Message for Madam / Madam Ji (any case)
+      if (/^madam(\s+ji)?$/i.test(name)) {
+        result.innerHTML = `
+          💌 <strong>Hyyyy, Madam ji 🌹🦢🌹</strong><br><br>
+
+          I have already written many paragraphs on you, but can never express my complete love in those limited words.  
+          Any how… this nature which attracts me… oh god it’s so addictive.  
+          Like I can say bhagwan ji is really creative, kabhi kabhi kuch acha bhi bana dete hai…<br><br>
+
+          I really don’t know what else I should write in this special message.  
+          It’s already 1607 lines of code… who cares, ChatGPT hai na 🙂  
+          But kuch na kuch to likhna padega.<br><br>
+
+          I may not always find the perfect words, but please know—every time I say I love you, it carries all the emotions this world can't describe.  
+          I'm yours, completely and forever.<br><br>
+
+          You are my muse, my heartbeat, and the wildest dream I never want to wake up from.  
+          Every moment with you feels like magic, and my love for you grows deeper with every heartbeat.  
+          You're not just beautiful on the outside, but the soul inside you radiates purity and depth like no one else.<br><br>
+
+          And ha… whatever happened in the last 5–6 months (i mean nothing), I have no complaint about it.  
+          All I need to explain is — I really missed you and that company which I got with you.  
+          I was with many people, made new friends, overcame my shyness and fear,  
+          but still… I missed you.<br><br>
+
+          I closed the gate of my heart for you, but I never locked it.  
+          I worked on my body, but every time I asked myself — why am I doing this…  
+          aaaaa nooo… I won’t share anything else.  
+          I promised myself to keep things with me only.<br><br>
+
+          And ha… one more thing…<br><br>
+
+          <strong>I LOVE YOU &lt;3</strong><br><br>
+
+          <em>made by ~~ Sir Ji</em>
+        `;
+      } else {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) {
+          hash += name.charCodeAt(i);
+        }
+        const index = hash % traits.length;
+        result.innerHTML = `<strong>${input}</strong><br><br>${traits[index]}`;
+      }
+
+      result.style.display = "block";
+    }
+  </script>
+</body>
+</html>
